@@ -1,0 +1,19 @@
+from telegram import Update
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
+import os
+
+# Pegando o token do bot que você colocou nas variáveis de ambiente
+TOKEN = os.getenv("BOT_TOKEN")
+
+# Função de start
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("Bot funcionando! 🚀")
+
+# Criando a aplicação
+app = ApplicationBuilder().token(TOKEN).build()
+
+# Adicionando o comando /start
+app.add_handler(CommandHandler("start", start))
+
+# Rodando o bot
+app.run_polling()
